@@ -23,7 +23,7 @@
 
 
 // read WebURL from current browser
-var WebURL         = "https://mining-core.bobek-industries.org/";  // Website URL is:  https://domain.com/
+var WebURL         = "https://poor-slav-pool.org/";  // Website URL is:  https://domain.com/
 // WebURL correction if not ends with /
 if (WebURL.substring(WebURL.length-1) != "/")
 {
