@@ -23,7 +23,7 @@
 
 
 // read WebURL from current browser
-var WebURL         = "https://poor-slav-pool.org/";  // Website URL is:  https://domain.com/
+var WebURL         = "https://miningcore.poor-slav-pool.org/";  // Website URL is:  https://domain.com/
 // WebURL correction if not ends with /
 if (WebURL.substring(WebURL.length-1) != "/")
 {
@@ -37,7 +37,7 @@ if (API.substring(API.length-1) != "/")
 	API = API + "/";
 	console.log('Corrected API, does not end with / -> New API : ', API);
 } 
-var stratumAddress = window.location.hostname;           				// Stratum address is:  domain.com
+var stratumAddress = "poor-slav-pool.org";           				// Stratum address is:  domain.com
 
 
 
@@ -428,7 +428,7 @@ function loadConnectPage() {
 	  
 	  
 	  // Connect Miner config 
-	  $("#miner-config").html("");
+	  /*$("#miner-config").html("");
       $("#miner-config").load("poolconfig/" + coinType + ".html",
         function( response, status, xhr ) {
           if ( status == "error" ) {
@@ -451,7 +451,7 @@ function loadConnectPage() {
             $(this).html(config);
 		  }
         }
-      );
+      );*/
     })
     .fail(function() {
       $.notify(
