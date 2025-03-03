@@ -45,43 +45,43 @@
     // List of pool information with logo paths and names
     const poolData = [
       {
-        "name": "Zether Pool/Solo",
+        "name": "Zether",
         "apiUrl": "https://zether-web.poor-slav-pool.org/api/stats",
         "logoPath": "img/coin/icon/zether.png",
         "visitUrl": "https://zether-web.poor-slav-pool.org/"
       },
       {
-        "name": "OctaSpace Pool/Solo",
+        "name": "OctaSpace",
         "apiUrl": "https://octa-web.poor-slav-pool.org/api/stats",
         "logoPath": "img/coin/icon/octa.png",
         "visitUrl": "https://octa-web.poor-slav-pool.org/"
       },
       {
-        "name": "Etica Pool/Solo",
+        "name": "Etica",
         "apiUrl": "https://etica-web.poor-slav-pool.org/api/stats",
         "logoPath": "img/coin/icon/etica.png",
         "visitUrl": "https://etica-web.poor-slav-pool.org/"
       },
       {
-        "name": "Redev2 Pool/Solo",
+        "name": "Redev2",
         "apiUrl": "https://redev2-web.poor-slav-pool.org/api/stats",
         "logoPath": "img/coin/icon/redev2.png",
         "visitUrl": "https://redev2-web.poor-slav-pool.org/"
       },
       {
-        "name": "Dogether Pool/Solo",
+        "name": "Dogether",
         "apiUrl": "https://dogether-web.poor-slav-pool.org/api/stats",
         "logoPath": "img/coin/icon/dogether.png",
         "visitUrl": "https://dogether-web.poor-slav-pool.org/"
       },
       {
-        "name": "Canxium Pool/Solo",
+        "name": "Canxium",
         "apiUrl": "https://canxium-web.poor-slav-pool.org/api/stats",
         "logoPath": "img/coin/icon/canxium.png",
         "visitUrl": "https://canxium-web.poor-slav-pool.org/"
       },
       {
-        "name": "Etho Pool/Solo",
+        "name": "Etho",
         "apiUrl": "https://etho-web.poor-slav-pool.org/api/stats",
         "logoPath": "img/coin/icon/etho.png",
         "visitUrl": "https://etho-web.poor-slav-pool.org/"
@@ -117,7 +117,7 @@
 
         // Create HTML for current pool statistics
         const poolStatsHtml = `
-          <tr class="coin-table-row" href="'${poolInfo.visitUrl}'">
+          <tr class="coin-table-row" onclick="window.location.href="'${poolInfo.visitUrl}'">
             <td class="coin">
               <a href="'${poolInfo.visitUrl}'" ><span="">
                 <img class="coinimg" src="${poolInfo.logoPath}">${poolInfo.name} 
@@ -132,8 +132,8 @@
             <td class="net-height">${chainheight}</td>
             <td class="card-btn col-hide">
               Go Mine 
-              <img class="coinimg" src="${poolInfo.logoPath}">
-              Alephium
+              <img class="coinimg" src="${poolInfo.logoPath}" onclick="window.location.href="'${poolInfo.visitUrl}'">
+              ${poolInfo.name}
             </td>
           </tr>
         `;
