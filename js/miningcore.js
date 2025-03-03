@@ -23,14 +23,14 @@
 
 
 // read WebURL from current browser
-var WebURL         = "https://miningcore.poor-slav-pool.org/";  // Website URL is:  https://domain.com/
+var WebURL         = "https://poor-slav-pool.org/";  // Website URL is:  https://domain.com/
 // WebURL correction if not ends with /
 if (WebURL.substring(WebURL.length-1) != "/")
 {
 	WebURL = WebURL + "/";
 	console.log('Corrected WebURL, does not end with / -> New WebURL : ', WebURL);
 }
-var API            = WebURL + "api/";   						// API address is:  https://domain.com/api/
+var API            = "https://miningcore.poor-slav-pool.org/api/";   						// API address is:  https://domain.com/api/
 // API correction if not ends with /
 if (API.substring(API.length-1) != "/")
 {
@@ -172,12 +172,13 @@ function loadHomePage() {
 		poolCoinTableTemplate += "<tr class='coin-table-row' href='#" + value.id + "'>";
 		poolCoinTableTemplate += "<td class='coin'><a href='#" + value.id + "'<span>" + coinLogo + coinName + " (" + value.coin.type.toUpperCase() + ") </span></a></td>";
 		poolCoinTableTemplate += "<td class='algo'>" + value.coin.algorithm + "</td>";
+    poolCoinTableTemplate += "<td class='payout-scheme'>" + value.paymentProcessing.payoutScheme + "</td>";
 		poolCoinTableTemplate += "<td class='miners'>" + value.poolStats.connectedMiners + "</td>";
 		poolCoinTableTemplate += "<td class='pool-hash'>" + _formatter(value.poolStats.poolHashrate, 5, "H/s") + "</td>";
 		poolCoinTableTemplate += "<td class='fee'>" + value.poolFeePercent + " %</td>";
 		poolCoinTableTemplate += "<td class='net-hash'>" + _formatter(value.networkStats.networkHashrate, 5, "H/s") + "</td>";
 		poolCoinTableTemplate += "<td class='net-diff'>" + _formatter(value.networkStats.networkDifficulty, 5, "") + "</td>";
-		poolCoinTableTemplate += "<td class='card-btn col-hide'>Go Mine " + coinLogo + coinName + "</td>";
+		poolCoinTableTemplate += "<td class='card-btn col-hide'>Go Mine " + coinLogo + "</td>";
 		poolCoinTableTemplate += "</tr>";
       });
 

@@ -46,42 +46,49 @@
     const poolData = [
       {
         "name": "Zether",
+        "symbol": "ZTH",
         "apiUrl": "https://zether-web.poor-slav-pool.org/api/stats",
         "logoPath": "img/coin/icon/zether.png",
         "visitUrl": "https://zether-web.poor-slav-pool.org/"
       },
       {
         "name": "OctaSpace",
+        "symbol": "OCTA",
         "apiUrl": "https://octa-web.poor-slav-pool.org/api/stats",
         "logoPath": "img/coin/icon/octa.png",
         "visitUrl": "https://octa-web.poor-slav-pool.org/"
       },
       {
         "name": "Etica",
+        "symbol": "EGAZ",
         "apiUrl": "https://etica-web.poor-slav-pool.org/api/stats",
         "logoPath": "img/coin/icon/etica.png",
         "visitUrl": "https://etica-web.poor-slav-pool.org/"
       },
       {
         "name": "Redev2",
+        "symbol": "REDEV2",
         "apiUrl": "https://redev2-web.poor-slav-pool.org/api/stats",
         "logoPath": "img/coin/icon/redev2.png",
         "visitUrl": "https://redev2-web.poor-slav-pool.org/"
       },
       {
         "name": "Dogether",
+        "symbol": "DOGETHER",
         "apiUrl": "https://dogether-web.poor-slav-pool.org/api/stats",
         "logoPath": "img/coin/icon/dogether.png",
         "visitUrl": "https://dogether-web.poor-slav-pool.org/"
       },
       {
         "name": "Canxium",
+        "symbol": "CAU",
         "apiUrl": "https://canxium-web.poor-slav-pool.org/api/stats",
         "logoPath": "img/coin/icon/canxium.png",
         "visitUrl": "https://canxium-web.poor-slav-pool.org/"
       },
       {
         "name": "Etho",
+        "symbol": "ETHO",
         "apiUrl": "https://etho-web.poor-slav-pool.org/api/stats",
         "logoPath": "img/coin/icon/etho.png",
         "visitUrl": "https://etho-web.poor-slav-pool.org/"
@@ -100,6 +107,7 @@
         let blocktime = data.nodes[0].blocktime;
         let chainheight = data.nodes[0].height;
         let minersTotal = data.minersTotal;
+        let hashrate = data.hashrate;
 
         // Function to format hashrate
         function formatHashrate(hashrate) {
@@ -120,20 +128,21 @@
           <tr class="coin-table-row" >
             <td class="coin">
               <a href="${poolInfo.visitUrl}" ><span="">
-                <img class="coinimg" src="${poolInfo.logoPath}">${poolInfo.name} 
+                <img class="coinimg" src="${poolInfo.logoPath}">
+                ${poolInfo.name} (${poolInfo.symbol}) 
               </a>
             </td>
-            <td class="algo">Ethash</td>
             <td class="miners">${minersTotal}</td>
-            <td class="block-time">${blocktime} s</td>
+            <td class="pool-hash">${formatHashrate(hashrate)}</td>
             <td class="fee">1 %</td>
             <td class="net-hash">${formatHashrate(nethash)}</td>
             <td class="net-diff">${formatHashrate(difficulty)}</td>
             <td class="net-height">${chainheight}</td>
             <td class="card-btn col-hide">
-              Go Mine 
-              <img class="coinimg" src="${poolInfo.logoPath}" onclick="window.location.href='${poolInfo.visitUrl}'">
-              ${poolInfo.name}
+              <a href="${poolInfo.visitUrl}" >
+                Go Mine 
+                <img class="coinimg" src="${poolInfo.logoPath}" onclick="window.location.href='${poolInfo.visitUrl}'">
+              </a>
             </td>
           </tr>
         `;
@@ -312,9 +321,8 @@ Apply one or more of the following classes to get the desired effect
                 <thead class="bg-light">
                   <tr class="border-0">
                     <th class="coin border-0">Pool coin</th>
-                    <th class="algo border-0">Algorithm</th>
                     <th class="miniers border-0">Miners</th>
-                    <th class="block-time border-0">Block Time</th>
+                    <th class="pool-hash border-0">Pool Hashrate</th>
                     <th class="fee border-0">Fee</th>
                     <th class="net-hash border-0">Network Hashrate</th>
                     <th class="net-diff border-0">Network Difficulty</th>
@@ -339,6 +347,7 @@ Apply one or more of the following classes to get the desired effect
 									<tr class="border-0">
 										<th class="coin border-0">Pool coin</th>
 										<th class="algo border-0">Algorithm</th>
+                    <th class="payout-scheme border-0">Payout Scheme</th>
 										<th class="miniers border-0">Miners</th>
 										<th class="pool-hash border-0">Pool Hashrate</th>
 										<th class="fee border-0">Fee</th>
