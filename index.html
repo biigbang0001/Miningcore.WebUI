@@ -117,9 +117,9 @@
 
         // Create HTML for current pool statistics
         const poolStatsHtml = `
-          <tr class="coin-table-row" onclick="window.location.href="'${poolInfo.visitUrl}'">
+          <tr class="coin-table-row" >
             <td class="coin">
-              <a href="'${poolInfo.visitUrl}'" ><span="">
+              <a href="${poolInfo.visitUrl}" ><span="">
                 <img class="coinimg" src="${poolInfo.logoPath}">${poolInfo.name} 
               </a>
             </td>
@@ -132,7 +132,7 @@
             <td class="net-height">${chainheight}</td>
             <td class="card-btn col-hide">
               Go Mine 
-              <img class="coinimg" src="${poolInfo.logoPath}" onclick="window.location.href="'${poolInfo.visitUrl}'">
+              <img class="coinimg" src="${poolInfo.logoPath}" onclick="window.location.href='${poolInfo.visitUrl}'">
               ${poolInfo.name}
             </td>
           </tr>
@@ -299,9 +299,6 @@ Apply one or more of the following classes to get the desired effect
 				<div class="card card-shadow card-body">
 					<center><h5> Welcome to Miningcore Mining Pool</h5></center>
 					<hr>
-          
-
-
 					</br>
 				</div>
 			</div>
