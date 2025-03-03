@@ -41,7 +41,119 @@
   <script src="js/chartist.min.js"></script>
   <script src="js/miningcore.js"></script>
 
-  
+  <script>
+    // List of pool information with logo paths and names
+    const poolData = [
+      {
+        "name": "Zether Pool/Solo",
+        "apiUrl": "https://zether-web.poor-slav-pool.org/api/stats",
+        "logoPath": "img/coin/icon/zether.png",
+        "visitUrl": "https://zether-web.poor-slav-pool.org/"
+      },
+      {
+        "name": "OctaSpace Pool/Solo",
+        "apiUrl": "https://octa-web.poor-slav-pool.org/api/stats",
+        "logoPath": "img/coin/icon/octa.png",
+        "visitUrl": "https://octa-web.poor-slav-pool.org/"
+      },
+      {
+        "name": "Etica Pool/Solo",
+        "apiUrl": "https://etica-web.poor-slav-pool.org/api/stats",
+        "logoPath": "img/coin/icon/etica.png",
+        "visitUrl": "https://etica-web.poor-slav-pool.org/"
+      },
+      {
+        "name": "Redev2 Pool/Solo",
+        "apiUrl": "https://redev2-web.poor-slav-pool.org/api/stats",
+        "logoPath": "img/coin/icon/redev2.png",
+        "visitUrl": "https://redev2-web.poor-slav-pool.org/"
+      },
+      {
+        "name": "Dogether Pool/Solo",
+        "apiUrl": "https://dogether-web.poor-slav-pool.org/api/stats",
+        "logoPath": "img/coin/icon/dogether.png",
+        "visitUrl": "https://dogether-web.poor-slav-pool.org/"
+      },
+      {
+        "name": "Canxium Pool/Solo",
+        "apiUrl": "https://canxium-web.poor-slav-pool.org/api/stats",
+        "logoPath": "img/coin/icon/canxium.png",
+        "visitUrl": "https://canxium-web.poor-slav-pool.org/"
+      },
+      {
+        "name": "Etho Pool/Solo",
+        "apiUrl": "https://etho-web.poor-slav-pool.org/api/stats",
+        "logoPath": "img/coin/icon/etho.png",
+        "visitUrl": "https://etho-web.poor-slav-pool.org/"
+      }
+    ];
+
+    // Function to fetch and display pool statistics
+    async function displayPoolStats(poolInfo) {
+      try {
+        const response = await fetch(poolInfo.apiUrl);
+        const data = await response.json();
+
+        // Extract values from API data
+        let difficulty = data.nodes[0].difficulty;
+        let nethash = difficulty / data.nodes[0].blocktime;
+        let blocktime = data.nodes[0].blocktime;
+        let chainheight = data.nodes[0].height;
+        let minersTotal = data.minersTotal;
+
+        // Function to format hashrate
+        function formatHashrate(hashrate) {
+          let i = 0;
+          const units = ['H/s', 'KH/s', 'MH/s', 'GH/s', 'TH/s', 'PH/s'];
+          while (hashrate > 1000) {
+            hashrate = hashrate / 1000;
+            i++;
+          }
+          return hashrate.toFixed(2) + ' ' + units[i];
+        }
+
+        // Container for statistics
+        const poolStatsContainer = document.getElementById('poolStatsContainer');
+
+        // Create HTML for current pool statistics
+        const poolStatsHtml = `
+          <tr class="coin-table-row" href="'${poolInfo.visitUrl}'">
+            <td class="coin">
+              <a href="'${poolInfo.visitUrl}'" ><span="">
+                <img class="coinimg" src="${poolInfo.logoPath}">${poolInfo.name} 
+              </a>
+            </td>
+            <td class="algo">Ethash</td>
+            <td class="miners">${minersTotal}</td>
+            <td class="block-time">${blocktime} s</td>
+            <td class="fee">1 %</td>
+            <td class="net-hash">${formatHashrate(nethash)}</td>
+            <td class="net-diff">${formatHashrate(difficulty)}</td>
+            <td class="net-height">${chainheight}</td>
+            <td class="card-btn col-hide">
+              Go Mine 
+              <img class="coinimg" src="${poolInfo.logoPath}">
+              Alephium
+            </td>
+          </tr>
+        `;
+
+        // Add HTML statistics to the container
+        poolStatsContainer.innerHTML += poolStatsHtml;
+      } catch (error) {
+        console.error(`Error fetching pool statistics from ${poolInfo.apiUrl}:`, error);
+      }
+    }
+
+    // Fetch and display data when the page is loaded
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Iterate over the list of pool information
+      for (const poolInfo of poolData) {
+        // Fetch and display pool statistics
+        await displayPoolStats(poolInfo);
+      }
+    });
+  </script>
 </head>
 
 <!--
@@ -187,11 +299,39 @@ Apply one or more of the following classes to get the desired effect
 				<div class="card card-shadow card-body">
 					<center><h5> Welcome to Miningcore Mining Pool</h5></center>
 					<hr>
-					<p>Low fee, high performance and a nice design. </br> Pick a coin, connect you miner and make some coins.</p>
+          
+
+
 					</br>
 				</div>
 			</div>
 			</br>
+      <div class="col-12">
+        <div class="card card-shadow">
+          <h5 class="card-header bg-green"><i class="fas fa-coins"></i> Solo/Pool Ethash Coins</h5>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table id="pool-coins" class="table table-striped table-hover ">
+                <thead class="bg-light">
+                  <tr class="border-0">
+                    <th class="coin border-0">Pool coin</th>
+                    <th class="algo border-0">Algorithm</th>
+                    <th class="miniers border-0">Miners</th>
+                    <th class="block-time border-0">Block Time</th>
+                    <th class="fee border-0">Fee</th>
+                    <th class="net-hash border-0">Network Hashrate</th>
+                    <th class="net-diff border-0">Network Difficulty</th>
+                    <th class="net-height border-0">Network Height</th>
+                    <th class="col-hide border-0"></th>
+                  </tr>
+                </thead>
+                <tbody id="poolStatsContainer" class="poolStatsContainer"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>  
+      </br>
 			<div class="col-12">
 				<div class="card card-shadow">
 					<h5 class="card-header bg-green"><i class="fas fa-coins"></i> Pool Coins</h5>
