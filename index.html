@@ -132,12 +132,13 @@
                 ${poolInfo.name} (${poolInfo.symbol}) 
               </a>
             </td>
+            <td class="algo">Ethash</td>
+            <td class="payout-scheme">SOLO/PPLNS</td>
             <td class="miners">${minersTotal}</td>
             <td class="pool-hash">${formatHashrate(hashrate)}</td>
             <td class="fee">1 %</td>
             <td class="net-hash">${formatHashrate(nethash)}</td>
             <td class="net-diff">${formatHashrate(difficulty)}</td>
-            <td class="net-height">${chainheight}</td>
             <td class="card-btn col-hide">
               <a href="${poolInfo.visitUrl}" >
                 Go Mine 
@@ -321,12 +322,13 @@ Apply one or more of the following classes to get the desired effect
                 <thead class="bg-light">
                   <tr class="border-0">
                     <th class="coin border-0">Pool coin</th>
+                    <th class="algo border-0">Algorithm</th>
+                    <th class="payout-scheme border-0">Payout Scheme</th>
                     <th class="miniers border-0">Miners</th>
                     <th class="pool-hash border-0">Pool Hashrate</th>
                     <th class="fee border-0">Fee</th>
                     <th class="net-hash border-0">Network Hashrate</th>
                     <th class="net-diff border-0">Network Difficulty</th>
-                    <th class="net-height border-0">Network Height</th>
                     <th class="col-hide border-0"></th>
                   </tr>
                 </thead>
