@@ -299,7 +299,7 @@ function loadBlocksPage() {
           var addressDisplay = minerAddress === "N/A" ? "N/A" : minerAddress.substring(0, 12) + ' … ' + minerAddress.substring(minerAddress.length - 12);
 
           blockList += "<tr>";
-          blockList += "<td>" + createDate.toLocaleString('fr-FR', { timeZone: 'Europe/Paris', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }) + "</td>";
+          blockList += "<td>" + createDate.toLocaleString('fr-FR', { timeZone: 'Europe/Paris', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }) + " GMT+2</td>";
           blockList += "<td>" + addressDisplay + "</td>"; // Adresse affichée comme texte brut, sans lien
           blockList += "<td><a href='" + value.infoLink + "' target='_blank'>" + value.blockHeight + "</a></td>";
           if (typeof value.effort !== "undefined") {
@@ -345,8 +345,8 @@ function loadPaymentsPage() {
           var addressDisplay = value.address ? value.address.substring(0, 12) + ' … ' + value.address.substring(value.address.length - 12) : "N/A";
 
           paymentList += '<tr>';
-          paymentList += "<td>" + createDate + "</td>";
-          paymentList += "<td>" + addressDisplay + "</td>"; // Adresse affichée comme texte brut, sans lien
+          paymentList += "<td>" + createDate.toLocaleString('fr-FR', { timeZone: 'Europe/Paris', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }) + " GMT+2</td>";
+          paymentList += "<td>" + addressDisplay + "</td>";
           paymentList += '<td>' + _formatter(value.amount, 5, '') + '</td>';
           paymentList += '<td colspan="2"><a href="' + value.transactionInfoLink + '" target="_blank">' + value.transactionConfirmationData.substring(0, 16) + ' … ' + value.transactionConfirmationData.substring(value.transactionConfirmationData.length - 16) + ' </a></td>';
           paymentList += '</tr>';
