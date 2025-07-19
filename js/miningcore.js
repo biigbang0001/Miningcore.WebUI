@@ -151,7 +151,7 @@ function loadHomePage() {
                 if (typeof coinName === "undefined" || coinName === null) {coinName = value.coin.type;}
 
                 poolCoinTableTemplate += "<tr class='coin-table-row' href='#" + value.id + "'>";
-                poolCoinTableTemplate += "<td class='coin'><a href='#" + value.id + "'<span>" + coinLogo + coinName + " (" + value.coin.type.toUpperCase() + ") </span></a></td>";
+                poolCoinTableTemplate += "<td class='coin'><a href='#" + value.id + "'> <span>" + coinLogo + coinName + " (" + value.coin.type.toUpperCase() + ") </span></a></td>";
                 poolCoinTableTemplate += "<td class='algo'>" + value.coin.algorithm + "</td>";
     poolCoinTableTemplate += "<td class='payout-scheme'>" + value.paymentProcessing.payoutScheme + "</td>";
                 poolCoinTableTemplate += "<td class='miners'>" + value.poolStats.connectedMiners + "</td>";
@@ -281,7 +281,7 @@ function loadBlocksPage() {
       var blockList = "";
       if (data.length > 0) {
         $.each(data, function(index, value) {
-          var createDate = convertLocalDateToUTCDate(new Date(value.created), false);
+          var createDate = new Date(value.created);
           var effort = Math.round(value.effort * 100);
           var effortClass = "";
           if (effort < 30) {
@@ -299,7 +299,7 @@ function loadBlocksPage() {
           var addressDisplay = minerAddress === "N/A" ? "N/A" : minerAddress.substring(0, 12) + ' … ' + minerAddress.substring(minerAddress.length - 12);
 
           blockList += "<tr>";
-          blockList += "<td>" + createDate + "</td>";
+          blockList += "<td>" + createDate.toLocaleString('fr-FR', { timeZone: 'Europe/Paris', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }) + "</td>";
           blockList += "<td>" + addressDisplay + "</td>"; // Adresse affichée comme texte brut, sans lien
           blockList += "<td><a href='" + value.infoLink + "' target='_blank'>" + value.blockHeight + "</a></td>";
           if (typeof value.effort !== "undefined") {
@@ -340,7 +340,7 @@ function loadPaymentsPage() {
       var paymentList = "";
       if (data.length > 0) {
         $.each(data, function(index, value) {
-          var createDate = convertLocalDateToUTCDate(new Date(value.created), false);
+          var createDate = new Date(value.created);
           // Formater l'adresse (sans lien)
           var addressDisplay = value.address ? value.address.substring(0, 12) + ' … ' + value.address.substring(value.address.length - 12) : "N/A";
 
@@ -555,8 +555,8 @@ function loadStatsChart() {
 
       $.each(data.stats, function(index, value) {
         if (labels.length === 0 || (labels.length + 1) % 4 === 1) {
-          var createDate = convertLocalDateToUTCDate(new Date(value.created),false);
-          labels.push(createDate.getHours() + ":00");
+          var createDate = new Date(value.created);
+          labels.push(createDate.toLocaleString('fr-FR', { timeZone: 'Europe/Paris', hour: '2-digit' }) + ":00");
         } else {
           labels.push("");
         }
@@ -703,10 +703,7 @@ function loadDashboardChart(walletAddress) {
 
         $.each(data, function(index, value) {
           if (labels.length === 0 || (labels.length + 1) % 4 === 1) {
-            var createDate = convertLocalDateToUTCDate(
-              new Date(value.created),
-              false
-            );
+          var createDate = new Date(value.created);
             labels.push(createDate.getHours() + ":00");
           } else {
             labels.push("");
