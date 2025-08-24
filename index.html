@@ -113,12 +113,14 @@
   <script>
      // Définir le message de la page d'accueil comme une chaîne
      const homepageMessage = `
-         <p>If you need help getting started mining, join <a href="https://discord.gg/y5rkGHU7Qh" class="btn btn-primary btn-sm" style="background-color: #7289da; border-color: #7289da;">Discord</a></p>
-         <p>If you need a Nito wallet <a href="https://wallet-nito.nitopool.fr" class="btn btn-primary btn-sm" style="background-color: #77da72; border-color: #7289da;">Wallet-Nito</a></p>
+         <p>If you need help getting started mining, join <a href="https://discord.gg/y5rkGHU7Qh" class="btn btn-primary btn-sm" style="background-color: #7289da; border-color: #7289da;" target="_blank">Discord</a> </p>
+         <p>If you need a Nito wallet <a href="https://wallet-nito.nitopool.fr" class="btn btn-primary btn-sm" style="background-color: #77da72; border-color: #7289da;" target="_blank">Wallet-Nito</a></p>
          <p class="text-danger">Please do not mine directly to an exchange wallet !!!</p>
-         <p style="font-weight: bold; text-transform: uppercase;">sha-256⛏️ LOW Difficulty variable ✅CPU ↔ 10 TH/S</p>
-         <p style="font-weight: bold; text-transform: uppercase;">sha-256⛏️ MEDIUM Difficulty Variable ✅10 TH/S ↔ 100 TH/S</p>
-         <p style="font-weight: bold; text-transform: uppercase;">sha-256⛏️ HIGH Difficulty Variable ✅100 TH/S ↔ ∞</p>
+         <p style="font-weight: bold; text-transform: uppercase;">sha-256⛏️ LOW Difficulty variable ✅CPU ↔ 10 TH/S ⛏️Difficulty Variable / 1 ↔ 81920⛏️ </p>
+         <p style="font-weight: bold; text-transform: uppercase;">sha-256⛏️ MEDIUM Difficulty Variable ✅10 TH/S ↔ 100 TH/S ⛏️Difficulty Variable / 8192 ↔ 1310720⛏️</p>
+         <p style="font-weight: bold; text-transform: uppercase;">sha-256⛏️ HIGH Difficulty Variable ✅100 TH/S ↔ ∞ ⛏️Difficulty Variable / 131072 ↔ ∞⛏️</p>
+         <p style="font-weight: bold; text-transform: uppercase;">scrypt⛏️ LOW/MEDIUM Difficulty Variable ✅CPU ↔ 5 GH/S ⛏️Difficulty Variable / 512 ↔ 500000⛏️</p>
+         <p style="font-weight: bold; text-transform: uppercase;">scrypt⛏️ HIGH Difficulty Variable ✅5 GH/S ↔ ∞ ⛏️Difficulty Variable / 50000 ↔ ∞⛏️</p>
          <p class="text-danger">Nitopool uses a Stratum V1 pool, Stratum V2 will be added soon, stay tuned 👽</p>
          <p class="text-danger">PPLNSBF payment system (25% of the block returns to the address that found it, the rest is divided normally with the pplns system)</p>
      `;
@@ -291,14 +293,27 @@ Apply one or more of the following classes to get the desired effect
                                         <center><h5> </h5></center>
                                         <hr>
                                         </br>
-                                        <p>If you need help getting started mining, join <a href="https://discord.gg/y5rkGHU7Qh" class="btn btn-primary btn-sm" style="background-color: #7289da; border-color: #7289da;">Discord</a> </p>
-                                        <p>If you need a Nito wallet <a href="https://wallet-nito.nitopool.fr" class="btn btn-primary btn-sm" style="background-color: #77da72; border-color: #7289da;">Wallet-Nito</a></p>
-                                        <p class="text-danger">Please do not mine directly to an exchange wallet !!!</p>
-                                        <p style="font-weight: bold; text-transform: uppercase;">sha-256⛏️ LOW Difficulty Variable ✅CPU ↔ 10 TH/S</p>
-                                        <p style="font-weight: bold; text-transform: uppercase;">sha-256⛏️ MEDIUM Difficulty Variable ✅10 TH/S ↔ 100 TH/S</p>
-                                        <p style="font-weight: bold; text-transform: uppercase;">sha-256⛏️ HIGH Difficulty Variable ✅100 TH/S ↔ ∞</p>
-                                        <p class="text-danger">Nitopool uses a Stratum V1 pool, Stratum V2 will be added soon, stay tuned 👽</p>
-                                        <p class="text-danger">PPLNSBF payment system (25% of the block returns to the address that found it, the rest is divided normally with the pplns system)</p>
+                                        <style>
+                                        /* CSS pour l'animation : clignotement lent avec changement de couleurs */
+                                           @keyframes blink-multicolor {
+                                           0% { color: red; opacity: 1; }    /* Rouge, visible */
+                                           25% { color: red; opacity: 0.5; } /* Fondu */
+                                           33% { color: green; opacity: 1; } /* Vert, visible */
+                                           58% { color: green; opacity: 0.5; } /* Fondu */
+                                           66% { color: blue; opacity: 1; }  /* Bleu, visible */
+                                           91% { color: blue; opacity: 0.5; } /* Fondu */
+                                           100% { color: red; opacity: 1; }  /* Retour au rouge */
+                                         }
+
+                                         .blink-text {
+                                           font-weight: bold; /* Texte en gras */
+                                           animation: blink-multicolor 5s infinite; /* Animation lente, infinie */
+                                         }
+                                         </style>
+
+                                         <p>If you need help getting started mining, join <a href="https://discord.gg/y5rkGHU7Qh" class="btn btn-primary btn-sm" style="background-color: #7289da; border-color: #7289da;" target="_blank">Discord</a> </p>
+                                         <p>If you need a Nito wallet <a href="https://wallet-nito.nitopool.fr" class="btn btn-primary btn-sm" style="background-color: #77da72; border-color: #7289da;" target="_blank">Wallet-Nito</a></p>
+                                         <p class="text-danger blink-text">Please do not mine directly to an exchange wallet !!!</p>
                                 </div>
                         </div>
                         </br>
@@ -814,6 +829,10 @@ Apply one or more of the following classes to get the desired effect
                                                 </p>
                                         </div>
                     <div class="card-body table-responsive faq">
+                      <h4>When and how are payments made?</h4>
+                      <p>
+                        A payout is triggered once every 10 minutes and pays out blocks that have reached 100% confirmation, for all payment methods (solo, pplnsbf, etc.)
+                      </p>
                       <h4>Do I need to register an account to mine?</h4>
                       <p>
                         Registration is not required. Just configure your miner
